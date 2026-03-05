@@ -67,3 +67,18 @@ export const getSubscriptionById = async (req, res, next) => {
         next(e);
     }
 }
+export const getAllSubscriptions = async (req, res, next) => {//agamya
+    try{
+        const subscriptions = await Subscription.find({
+            user: req.user._id,
+        });
+
+        return res.status(200).json({
+            success: true,
+            data: subscriptions,
+        });
+    }
+    catch(e){
+        next(e);
+    }
+}
